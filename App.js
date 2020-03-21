@@ -11,16 +11,29 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { InitialView, UploadView } from './src/screens';
+import config from './src/config';
 
 
 const Stack = createStackNavigator();
+
+const uploadViewHeaderOptions = { 
+  headerShown: true, 
+  headerTitle: null, 
+  headerStyle: {
+    backgroundColor: config.colors.black, 
+    borderWidth: 0,
+    shadowColor:'transparent' 
+  },
+  headerTintColor: config.colors.green,
+  headerBackTitle:'Volver'
+}
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="initalView" component={InitialView}  options={{ headerShown: false}} />
-        <Stack.Screen name="uploadView" component={UploadView}  options={{ headerShown: true}} />
+        <Stack.Screen name="uploadView" component={UploadView}  options={uploadViewHeaderOptions} />
       </Stack.Navigator>
     </NavigationContainer>
   );
