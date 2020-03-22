@@ -9,18 +9,35 @@ import {
 } from 'react-native';
 import {
     Button
-} from 'react-native-elements';
+} from 'react-native-elements'; 
+import { 
+    Carrousel
+} from '../components';
+
 import config from '../config';
 
+
 class UploadView extends Component {
+    state = {
+        images: [null, null, null]
+    }
     render() {
         return (
-
-
             <View style={styles.mainContainer}  >
                 <SafeAreaView style={{ flex: 1 }} >
                     <StatusBar barStyle="light-content" />
-                
+                    <Text style={styles.welcomeTitleText}>
+                        Imagenes a clasificar
+                    </Text>
+                    <Carrousel  data ={ this.state.images } />
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            title="Clasificar" 
+                            titleStyle={styles.buttonTitle} 
+                            buttonStyle={styles.buttonStyle}
+                            onPress={()=> this.props.navigation.navigate('uploadView')}
+                        />
+                    </View>
                 </SafeAreaView>
 
             </View>
@@ -47,7 +64,7 @@ const styles = {
         color: config.colors.white, 
         textAlign: 'center', 
         padding: '5%', 
-        marginTop: '10%'
+        marginTop: '8%'
     },
     bodyText: {
         width: '100%', 
