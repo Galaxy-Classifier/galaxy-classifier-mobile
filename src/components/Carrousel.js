@@ -5,29 +5,30 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import config from '../config';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-const renderCards = (data) => {
+const renderCards = (data,addImage) => {
     if (data.length > 0) {
         let i=0;
         return data.map(
             item => {
                 i++;
                 return (
-                    <View key={i} style={styles.itemContainer} >
+                    <TouchableOpacity  onPress={ () => addImage() }  key={i} style={styles.itemContainer} >
                         <Image source={ item ? item.uri :config.images.addImageIcon} style={{ width: '50%' }} />
-                    </View>
+                    </TouchableOpacity>
                 );
             }
         );
     }
 }
 
-const Carrousel = ({ data }) => {
+const Carrousel = ({ data, addImage }) => {
     return (
         <View style={{ height: '50%' }}>
-            <Swiper showsButtons buttonWrapperStyle={{color: config.colors.white}} activeDotColor={config.colors.green} dotColor={config.colors.white}  >
-                {renderCards(data)}
+            <Swiper showsButtons activeDotColor={config.colors.green} dotColor={config.colors.white}  >
+                {renderCards(data,addImage)}
             </Swiper>
         </View>
 
@@ -36,7 +37,6 @@ const Carrousel = ({ data }) => {
 
 const styles={
     itemContainer: { 
-        flex: 1, 
         width: '80%', 
         justifyContent: 'center', 
         alignItems: 'center', 
@@ -44,7 +44,8 @@ const styles={
         borderWidth: 5, 
         margin: '20%', 
         alignSelf: 'center', 
-        borderRadius: 10 
+        borderRadius: 10 ,
+        padding:'3%'
     }
 }
 
