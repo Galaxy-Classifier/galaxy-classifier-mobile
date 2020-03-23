@@ -2,24 +2,53 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    ImageBackground,
     SafeAreaView,
     StatusBar,
-    Image
+    Alert
 } from 'react-native';
 import {
     Button
 } from 'react-native-elements'; 
 import { 
-    Carrousel
+    Carrousel,
+    PhotoModal
 } from '../components';
+import CameraRoll from '@react-native-community/cameraroll';
 
 import config from '../config';
 
 
 class UploadView extends Component {
     state = {
-        images: [null, null, null]
+        images: [null, null, null],
+        showModal: false,
+        photos: []
+    }
+    openGallery(){
+        CameraRoll.getPhotos({
+            first: 20,
+            assetType: 'Photos',
+          })
+          .then(r => {
+            this.setState({ photos: r.edges,showModal:true });
+          })
+          .catch((err) => {
+             //Error Loading Images
+            Alert.alert("Error","Error al abrir la liberia");
+          });
+    }
+    onSelectedPhoto(photo){
+        let aux = this.state.images;
+        console.log(aux);
+         let idx = aux.indexOf(photo);
+         if(idx >-1){
+             aux.splice(idx,1);
+         } 
+         else{
+             aux.push(photo);
+         }
+         this.setState({images : aux});
+         console.log(this.state.images);
     }
     render() {
         return (
@@ -29,7 +58,10 @@ class UploadView extends Component {
                     <Text style={styles.welcomeTitleText}>
                         Imagenes a clasificar
                     </Text>
-                    <Carrousel  data ={ this.state.images } />
+                    <Carrousel  
+                        data ={ this.state.images }
+                        addImage={ ()=> this.openGallery() }
+                    />
                     <View style={styles.buttonContainer}>
                         <Button 
                             title="Clasificar" 
@@ -38,6 +70,13 @@ class UploadView extends Component {
                             onPress={()=> this.props.navigation.navigate('uploadView')}
                         />
                     </View>
+                    <PhotoModal 
+                        showModal={this.state.showModal} 
+                        onCloseModal={()=> this.setState({showModal:false})}  
+                        data={this.state.photos}
+                        onSelectItem ={ photo => this.onSelectedPhoto(photo)}
+                        selectedImages = { this.state.images }
+                    />
                 </SafeAreaView>
 
             </View>
