@@ -22,7 +22,8 @@ class UploadView extends Component {
     state = {
         images: [],
         showModal: false,
-        photos: []
+        photos: [],
+        savedImages: []
     }
     openGallery(){
         CameraRoll.getPhotos({
@@ -39,7 +40,6 @@ class UploadView extends Component {
     }
     onSelectedPhoto(photo){
         let aux = this.state.images;
-        console.log(aux);
          let idx = aux.indexOf(photo);
          if(idx >-1){
              aux.splice(idx,1);
@@ -51,6 +51,11 @@ class UploadView extends Component {
              Alert.alert('Maxima capacidad', 'Capacidad exdedida. Solamente puedes seleccionar 3 images.');
          }
          this.setState({images : aux});
+         
+    }
+    savingSelectedImages(){
+        //Using the spread operator(...) because if was giving a bug when the image state was getting updated
+        this.setState({savedImages: [... this.state.images] , showModal:false })
     }
     render() {
         return (
@@ -61,7 +66,7 @@ class UploadView extends Component {
                         Imagenes a clasificar
                     </Text>
                     <Carrousel  
-                        data ={ this.state.images.length > 0 ? this.state.images : [null]}
+                        data ={ this.state.savedImages.length > 0 ? this.state.savedImages : [null]}
                         addImage={ ()=> this.openGallery() }
                     />
                     <View style={styles.buttonContainer}>
@@ -70,6 +75,7 @@ class UploadView extends Component {
                             titleStyle={styles.buttonTitle} 
                             buttonStyle={styles.buttonStyle}
                             onPress={()=> this.props.navigation.navigate('uploadView')}
+                           
                         />
                     </View>
                     <PhotoModal 
@@ -78,6 +84,8 @@ class UploadView extends Component {
                         data={this.state.photos}
                         onSelectItem ={ photo => this.onSelectedPhoto(photo)}
                         selectedImages = { this.state.images }
+                        onSaveSelection = { () => this.savingSelectedImages()  }
+    
                     />
                 </SafeAreaView>
 
