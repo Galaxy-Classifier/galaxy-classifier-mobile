@@ -33,7 +33,7 @@ const renderCards = (data,addImage) => {
 const Carrousel = ({ data, addImage }) => {
     return (
         <View style={{ height: '50%' }}>
-            <Swiper  showsButtons={data.length >1 ?  true : false} activeDotColor={config.colors.green} dotColor={config.colors.white}  >
+            <Swiper showsButtons={data.length >1 ?  true : false} activeDotColor={config.colors.green} dotColor={config.colors.white}  >
                 {renderCards(data,addImage)}
             </Swiper>
         </View>
