@@ -2,25 +2,91 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    ImageBackground,
     SafeAreaView,
     StatusBar,
-    Image
+    Alert
 } from 'react-native';
 import {
     Button
-} from 'react-native-elements';
+} from 'react-native-elements'; 
+import { 
+    Carrousel,
+    PhotoModal
+} from '../components';
+import CameraRoll from '@react-native-community/cameraroll';
+
 import config from '../config';
 
+
 class UploadView extends Component {
+    state = {
+        images: [],
+        showModal: false,
+        photos: [],
+        savedImages: []
+    }
+    openGallery(){
+        CameraRoll.getPhotos({
+            first: 20,
+            assetType: 'Photos',
+          })
+          .then(r => {
+            this.setState({ photos: r.edges,showModal:true });
+          })
+          .catch((err) => {
+             //Error Loading Images
+            Alert.alert("Error","Error al abrir la liberia");
+          });
+    }
+    onSelectedPhoto(photo){
+        let aux = this.state.images;
+         let idx = aux.indexOf(photo);
+         if(idx >-1){
+             aux.splice(idx,1);
+         } 
+         else if( aux.length < 3 ){
+             aux.push(photo);
+         }
+         else{
+             Alert.alert('Maxima capacidad', 'Capacidad exdedida. Solamente puedes seleccionar 3 images.');
+         }
+         this.setState({images : aux});
+         
+    }
+    savingSelectedImages(){
+        //Using the spread operator(...) because if was giving a bug when the image state was getting updated
+        this.setState({savedImages: [... this.state.images] , showModal:false })
+    }
     render() {
         return (
-
-
             <View style={styles.mainContainer}  >
                 <SafeAreaView style={{ flex: 1 }} >
                     <StatusBar barStyle="light-content" />
-                
+                    <Text style={styles.welcomeTitleText}>
+                        Imagenes a clasificar
+                    </Text>
+                    <Carrousel  
+                        data ={ this.state.savedImages.length > 0 ? this.state.savedImages : [null]}
+                        addImage={ ()=> this.openGallery() }
+                    />
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            title="Clasificar" 
+                            titleStyle={styles.buttonTitle} 
+                            buttonStyle={styles.buttonStyle}
+                            onPress={()=> this.props.navigation.navigate('uploadView')}
+                           
+                        />
+                    </View>
+                    <PhotoModal 
+                        showModal={this.state.showModal} 
+                        onCloseModal={()=> this.setState({showModal:false})}  
+                        data={this.state.photos}
+                        onSelectItem ={ photo => this.onSelectedPhoto(photo)}
+                        selectedImages = { this.state.images }
+                        onSaveSelection = { () => this.savingSelectedImages()  }
+    
+                    />
                 </SafeAreaView>
 
             </View>
@@ -47,7 +113,7 @@ const styles = {
         color: config.colors.white, 
         textAlign: 'center', 
         padding: '5%', 
-        marginTop: '10%'
+        marginTop: '8%'
     },
     bodyText: {
         width: '100%', 
