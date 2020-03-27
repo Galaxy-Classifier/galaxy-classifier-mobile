@@ -20,7 +20,7 @@ import config from '../config';
 
 class UploadView extends Component {
     state = {
-        images: [null, null, null],
+        images: [],
         showModal: false,
         photos: []
     }
@@ -44,11 +44,13 @@ class UploadView extends Component {
          if(idx >-1){
              aux.splice(idx,1);
          } 
-         else{
+         else if( aux.length < 3 ){
              aux.push(photo);
          }
+         else{
+             Alert.alert('Maxima capacidad', 'Capacidad exdedida. Solamente puedes seleccionar 3 images.');
+         }
          this.setState({images : aux});
-         console.log(this.state.images);
     }
     render() {
         return (
@@ -59,7 +61,7 @@ class UploadView extends Component {
                         Imagenes a clasificar
                     </Text>
                     <Carrousel  
-                        data ={ this.state.images }
+                        data ={ this.state.images.length > 0 ? this.state.images : [null]}
                         addImage={ ()=> this.openGallery() }
                     />
                     <View style={styles.buttonContainer}>
