@@ -5,12 +5,15 @@ import {
     ImageBackground,
     SafeAreaView,
     StatusBar,
-    Image
+    Image,
+    Dimensions
 } from 'react-native';
 import {
     Button
 } from 'react-native-elements';
 import config from '../config';
+const SCREEN_HEIGHT = Dimensions.get('window').height ;
+
 
 class InitialView extends Component {
     render() {
@@ -58,7 +61,7 @@ const styles = {
     },
     welcomeTitleText: {
         width: '100%', 
-        fontSize: 35, 
+        fontSize: SCREEN_HEIGHT * 0.04, 
         color: config.colors.white, 
         textAlign: 'center', 
         padding: '5%', 
@@ -66,11 +69,11 @@ const styles = {
     },
     bodyText: {
         width: '100%', 
-        fontSize: 25, 
+        fontSize: SCREEN_HEIGHT * 0.03, 
         color: config.colors.white, 
         textAlign: 'justify', 
         padding: '5%', 
-        marginTop: '60%'
+        marginTop: '40%'
     },
     buttonContainer: {
         flex:1, 

@@ -57,7 +57,7 @@ const styles={
         width: '80%', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        margin: '20%', 
+        margin: '15%', 
         alignSelf: 'center', 
         borderRadius: 10 ,
         padding:'3%'
@@ -67,7 +67,7 @@ const styles={
         height:SCREEN_HEIGHT * 0.27,
         borderColor: config.colors.white,
         borderWidth:5,
-        borderRadius:10
+        borderRadius:10,
     }
 }
 
