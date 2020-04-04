@@ -17,12 +17,11 @@
     Icon
  } from 'react-native-elements';
  import config from '../config';
- const SCREEN_WIDTH = Dimensions.get('window').width;
  const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 
 
- const TnCModal = ({showModal, onCloseModal}) => {
+ const TnCModal = ({showModal, onCloseModal,onAcceptTnC}) => {
      const [checked, toogleCheck] = useState();
      return(
         <Modal transparent visible={showModal} onRequestClose={()=> onCloseModal()} animationType='fade' >
@@ -54,7 +53,7 @@
                 </Text>
             </ScrollView>
             <CheckBox checked={checked} onPress={()=> toogleCheck(!checked)} title='Acepto los terminos y condiciones' containerStyle={{backgroundColor:'transparent',borderWidth:0}}  />
-            <Button disabled={!checked} title='Continuar' />
+            <Button disabled={!checked} title='Continuar' onPress={ () =>onAcceptTnC()} />
             </View>
             
         </View>

@@ -2,7 +2,7 @@ export default {
     colors: {
        white: "#FFFFFF",
        green: "#029035",
-       black: "#000000"    
+       black: "#000000"
     },
     images:{
        galaxyBackgroundImage: require('../images/background.png'),
