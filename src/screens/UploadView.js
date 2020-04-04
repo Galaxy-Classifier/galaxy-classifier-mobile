@@ -76,6 +76,7 @@ class UploadView extends Component {
                             buttonStyle={styles.buttonStyle}
                             onPress={()=> this.props.navigation.navigate('uploadView')}
                            
+                            
                         />
                     </View>
                     <PhotoModal 
