@@ -13,7 +13,8 @@ import {
 import { 
     Carrousel,
     PhotoModal,
-    TnCModal
+    TnCModal,
+    LoadingModal
 } from '../components';
 import CameraRoll from '@react-native-community/cameraroll';
 
@@ -26,7 +27,8 @@ class UploadView extends Component {
         showModal: false,
         photos: [],
         savedImages: [],
-        showTnCModal: false
+        showTnCModal: false,
+        loading: false
     }
     openGallery(){
         CameraRoll.getPhotos({
@@ -59,6 +61,15 @@ class UploadView extends Component {
     savingSelectedImages(){
         //Using the spread operator(...) because if was giving a bug when the image state was getting updated
         this.setState({savedImages: [... this.state.images] , showModal:false })
+    }
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+    async uploadingImages(){
+        this.setState({ showTnCModal: false,loading: true});
+        await this.sleep(4000);
+        this.setState({loading: false});
+
     }
     render() {
         return (
@@ -95,8 +106,11 @@ class UploadView extends Component {
                     <TnCModal
                         showModal={this.state.showTnCModal}
                         onCloseModal={()=> this.setState({showTnCModal:false})}
-                        onAcceptTnC ={() => this.props.navigation.navigate('resultView')}
+                        onAcceptTnC ={() => this.uploadingImages()}
                     />
+                    <LoadingModal
+                        showModal={this.state.loading}
+                     />
                 </SafeAreaView>
 
             </View>
