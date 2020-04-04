@@ -4,14 +4,16 @@ import {
     Text,
     SafeAreaView,
     StatusBar,
-    Alert
+    Alert,
+    TouchableHighlightBase
 } from 'react-native';
 import {
     Button
 } from 'react-native-elements'; 
 import { 
     Carrousel,
-    PhotoModal
+    PhotoModal,
+    TnCModal
 } from '../components';
 import CameraRoll from '@react-native-community/cameraroll';
 
@@ -23,7 +25,8 @@ class UploadView extends Component {
         images: [],
         showModal: false,
         photos: [],
-        savedImages: []
+        savedImages: [],
+        showTnCModal: false
     }
     openGallery(){
         CameraRoll.getPhotos({
@@ -72,9 +75,10 @@ class UploadView extends Component {
                     <View style={styles.buttonContainer}>
                         <Button 
                             title="Clasificar" 
-                            titleStyle={styles.buttonTitle} 
-                            buttonStyle={styles.buttonStyle}
-                            onPress={()=> this.props.navigation.navigate('uploadView')}
+                            titleStyle={this.state.savedImages.length < 1 ? {} : styles.buttonTitle} 
+                            buttonStyle={this.state.savedImages.length < 1 ? styles.disabledButtonStyle : styles.buttonStyle}
+                            onPress={()=> this.setState({showTnCModal: true})}
+                            disabled={this.state.savedImages.length < 1 ? true : false }
                            
                         />
                     </View>
@@ -86,6 +90,11 @@ class UploadView extends Component {
                         selectedImages = { this.state.images }
                         onSaveSelection = { () => this.savingSelectedImages()  }
     
+                    />
+                    <TnCModal
+                        showModal={this.state.showTnCModal}
+                        onCloseModal={()=> this.setState({showTnCModal:false})}
+                        onAcceptTnC ={() => this.props.navigation.navigate('resultView')}
                     />
                 </SafeAreaView>
 
@@ -136,6 +145,10 @@ const styles = {
         backgroundColor:'transparent', 
         borderColor: config.colors.green, 
         borderWidth:4,
+        width:'60%',
+        alignSelf:'center' 
+    },
+    disabledButtonStyle: {
         width:'60%',
         alignSelf:'center' 
     }
