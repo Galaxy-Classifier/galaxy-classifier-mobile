@@ -10,5 +10,9 @@ export default {
        infoIcon: require('../images/info.png'),
        addImageIcon: require('../images/addImage.png'),
        erorrIcon:  require('../images/error.png')
+    },
+    uri: {
+       prediction: "https://ddddgdgdgd",
+       database: "https://dgggdgdggdg"
     }
 };
