@@ -8,6 +8,7 @@ export default {
        galaxyBackgroundImage: require('../images/background.png'),
        tecnmLogo: require('../images/logoTecnm.png'),
        infoIcon: require('../images/info.png'),
-       addImageIcon: require('../images/addImage.png') 
+       addImageIcon: require('../images/addImage.png'),
+       erorrIcon:  require('../images/error.png')
     }
 };
