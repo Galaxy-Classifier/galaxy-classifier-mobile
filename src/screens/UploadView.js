@@ -82,7 +82,7 @@ class UploadView extends Component {
         // }catch(err){
         //     this.setState({ loading: false, errorMessage: "Error al realizar la petición. Vuelva a intentar" , showError: true });
         // }
-        this.props.navigation.navigate('resultView', { images: {savedImages} });
+        this.props.navigation.navigate('resultView', { images: this.state.savedImages });
     }
     render() {
         return (
