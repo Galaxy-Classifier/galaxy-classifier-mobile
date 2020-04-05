@@ -20,7 +20,7 @@ const ErrorModal = ({showModal,message,onRequestClose}) => {
             <TouchableWithoutFeedback onPress={()  => onRequestClose() }  style={{flex:1}}  >
             <View style={styles.container}>
             <View style={styles.innerContainer} >
-                <Image source={config.images.erorrIcon} style={{width:SCREEN_HEIGHT * 0.05,height:SCREEN_HEIGHT * 0.05    }} />
+                <Image source={config.images.erorrIcon} style={styles.image} />
                 <Text style={styles.text}>{message}</Text>
             </View>
             </View>
@@ -49,7 +49,12 @@ const styles = {
     text: {
         fontSize: SCREEN_HEIGHT * 0.03,
         marginTop:20
+    },
+    image:{
+        width:SCREEN_HEIGHT * 0.05,
+        height:SCREEN_HEIGHT * 0.05    
     }
+
 };
 
 export { ErrorModal };
