@@ -4,8 +4,7 @@ import {
     Text,
     SafeAreaView,
     StatusBar,
-    Alert,
-    TouchableHighlightBase
+    Alert
 } from 'react-native';
 import {
     Button
@@ -14,7 +13,8 @@ import { 
     Carrousel,
     PhotoModal,
     TnCModal,
-    LoadingModal
+    LoadingModal,
+    ErrorModal
 } from '../components';
 import CameraRoll from '@react-native-community/cameraroll';
 
@@ -28,7 +28,8 @@ class UploadView extends Component {
         photos: [],
         savedImages: [],
         showTnCModal: false,
-        loading: false
+        loading: false,
+        showError: false
     }
     openGallery(){
         CameraRoll.getPhotos({
@@ -68,7 +69,7 @@ class UploadView extends Component {
     async uploadingImages(){
         this.setState({ showTnCModal: false,loading: true});
         await this.sleep(4000);
-        this.setState({loading: false});
+        this.setState({loading: false, showError:true});
 
     }
     render() {
@@ -110,6 +111,11 @@ class UploadView extends Component {
                     />
                     <LoadingModal
                         showModal={this.state.loading}
+                     />
+                    <ErrorModal
+                        showModal={this.state.showError}
+                        onRequestClose={()=> this.setState({showError: false})}
+                        message={"Error al relaizar la peitiicon"}
                      />
                 </SafeAreaView>
 
