@@ -24,11 +24,13 @@ const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 class ResultView extends Component {
     state= {
-        images: []
+        images: [],
+        prediction: [],
+        id: 0
     }
     componentWillMount(){
-       let { images } = this.props.route.params
-       this.setState({ images: images})
+       let { images ,prediction } = this.props.route.params;
+       this.setState({ images: images, prediction: prediction})
     }
 
     render() {
@@ -38,20 +40,20 @@ class ResultView extends Component {
                     <StatusBar barStyle="light-content" />
                     <Carrousel
                         data={this.state.images}
-                        onChangeView={idx => console.log('index: '+ idx)}
+                        onChangeView={idx => this.setState({id:idx})}
                     />
                     <Text style={styles.titleText}>
                         Tipo: 
                     </Text>
                     <Text style={styles.valueTitleText}>
-                        Galaxía elípitica
+                        Galaxía {this.state.prediction[this.state.id].type }
                     </Text>
                     <Text style={styles.titleText}>
                         Información: 
                     </Text>
                     <ScrollView style={{flex:1}} contentContainerStyle={{marginBottom:10,marginHorizontal:'5%'}} showsVerticalScrollIndicator persistentScrollbar >
                     <Text style={styles.infoBodyText}>
-                    Aqui va información acerca de la galaxia a la que pertenece la imagen, en pocas palabras como una pequeña descripción
+                    {this.state.prediction[this.state.id].information}
                     </Text>
                     </ScrollView>
                     
