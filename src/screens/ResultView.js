@@ -38,7 +38,7 @@ class ResultView extends Component {
                     <StatusBar barStyle="light-content" />
                     <Carrousel
                         data={this.state.images}
-                        addImage={()=> {}}
+                        onChangeView={idx => console.log('index: '+ idx)}
                     />
                     <Text style={styles.titleText}>
                         Tipo: 
