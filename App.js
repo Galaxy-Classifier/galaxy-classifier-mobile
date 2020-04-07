@@ -10,7 +10,7 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { InitialView, UploadView } from './src/screens';
+import { InitialView, UploadView, ResultView } from './src/screens';
 import config from './src/config';
 
 
@@ -34,6 +34,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="initalView" component={InitialView}  options={{ headerShown: false}} />
         <Stack.Screen name="uploadView" component={UploadView}  options={uploadViewHeaderOptions} />
+        <Stack.Screen name="resultView" component={ResultView}  options={uploadViewHeaderOptions} />
       </Stack.Navigator>
     </NavigationContainer>
   );
