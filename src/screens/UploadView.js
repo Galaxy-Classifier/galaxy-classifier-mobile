@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
     View,
@@ -82,7 +83,37 @@ class UploadView extends Component {
         // }catch(err){
         //     this.setState({ loading: false, errorMessage: "Error al realizar la petición. Vuelva a intentar" , showError: true });
         // }
-        this.props.navigation.navigate('resultView', { images: this.state.savedImages });
+
+        //Mocking the prediction
+        let prediction = [
+            {
+                //Image name
+                id: this.state.savedImages[0] ? this.state.savedImages[0] : null,
+                type: 'elíptica',
+                information: 'Aqui va información acerca de la galaxia a la que pertenece la imagen, en pocas palabras como una pequeña descripción'
+            },
+            {
+                //Image name
+                id: this.state.savedImages[1] ? this.state.savedImages[1] : null ,
+                type: 'Otro tipo',
+                information: 'Ejemplo de la información que debería de llevar en la descripcion de la galaxía para entender un poco mejor acerca de esto, y sea más educativo.'
+            },
+            {
+                //Image name
+                id: this.state.savedImages[2] ? this.state.savedImages[2] : null,
+                type: 'espiral',
+                information: 'Aqui va información acerca de la galaxia a la que pertenece la imagen, en pocas palabras como una pequeña descripción'
+            }
+        ]
+        let aux = [];
+        for(let i=0; i<prediction.length ; i++){
+            if(prediction[i].id) {
+                aux.push(prediction[i]);
+            }
+        }
+        this.props.navigation.navigate('resultView', { images: this.state.savedImages,prediction: aux });
+        this.setState({loading:false})
+
     }
     render() {
         return (

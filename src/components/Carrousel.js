@@ -21,7 +21,7 @@ const renderCards = (data,addImage) => {
             item => {
                 i++;
                 return (
-                    <TouchableOpacity  onPress={ () => addImage() }  key={i} style={item ? styles.selectedItemContainer : styles.itemContainer} >
+                    <TouchableOpacity disabled={addImage ? false : true}  onPress={ addImage ? () => addImage() : null }  key={i} style={item ? styles.selectedItemContainer : styles.itemContainer} >
                         <Image resizeMode='cover' source={ item ? {uri: item} :config.images.addImageIcon} style={item ? styles.selectedImage : {width:'50%'}} />
                     </TouchableOpacity>
                 );
@@ -30,10 +30,10 @@ const renderCards = (data,addImage) => {
     }
 }
 
-const Carrousel = ({ data, addImage }) => {
+const Carrousel = ({ data, addImage,onChangeView }) => {
     return (
         <View style={{ height: '50%' }}>
-            <Swiper showsButtons={data.length >1 ?  true : false} activeDotColor={config.colors.green} dotColor={config.colors.white}  >
+            <Swiper showsButtons={data.length >1 ?  true : false} activeDotColor={config.colors.green} dotColor={config.colors.white} onIndexChanged={ onChangeView ? idx =>  onChangeView(idx) : idx => console.log(idx) }  >
                 {renderCards(data,addImage)}
             </Swiper>
         </View>
