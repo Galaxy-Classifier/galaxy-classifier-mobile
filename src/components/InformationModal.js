@@ -1,5 +1,5 @@
 /**
- * A Modal component to show the information about the galaxies we are supporting, and information about the product owners
+ * A Modal component to show the information about the galaxies we are supporting
  */
 
 import React, {useState} from 'react';
@@ -48,7 +48,7 @@ const renderGalaxies = () => {
 }
 
 const InformationModal = ({showModal, onCloseModal}) => {
-    const [checked, toogleCheck] = useState();
+    const [checked, toogleCheck] = useState(); 
     return(
        <Modal transparent visible={showModal} onRequestClose={()=> onCloseModal()} animationType='fade' >
         
