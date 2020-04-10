@@ -1,0 +1,27 @@
+{
+    "stakeholders": [{
+        "id": 1,
+        "name": "Dr. Héctor",
+        "lastName": "Rodríguez Rangel",
+        "role": "Asesor externo",
+        "email": "email@domain.com"
+    },{
+        "id": 2,
+        "name": "M.C. Gloria",
+        "lastName": "Peralta Peñuñuri",
+        "role": "Asesora interna",
+        "email": "email@domain.com"
+    },{
+        "id": 3,
+        "name": "René",
+        "lastName": "Vidríales Trujillo",
+        "role": "Residente",
+        "email": "email@domain.com"
+    },{
+        "id": 4,
+        "name": "Víctor",
+        "lastName": "Morfín Arredondo",
+        "role": "Residente",
+        "email": "email@domain.com"
+    }]
+}

@@ -3,7 +3,7 @@
  * User history: (https://dev.azure.com/apollor/Galaxy%20classifier/_backlogs/backlog/Galaxy%20classifier%20Team/Features/?workitem=13)
  * Created by  Victor Morfin
  */
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     ScrollView,
@@ -12,58 +12,61 @@ import {
     StatusBar,
     Dimensions
 } from 'react-native';
-import { 
+import {
     Icon
 } from 'react-native-elements';
 import {
-    Carrousel
- } from '../components';
+    Carrousel,
+    InformationModal
+} from '../components';
 import config from '../config';
-const SCREEN_HEIGHT= Dimensions.get('window').height;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 
-class ResultView extends Component {
-    state= {
-        images: [],
-        prediction: [],
-        id: 0
-    }
-    componentWillMount(){
-       let { images ,prediction } = this.props.route.params;
-       this.setState({ images: images, prediction: prediction})
-    }
 
-    render() {
-        return (
-            <View style={styles.mainContainer}  >
-                <SafeAreaView style={{ flex: 1 }} >
-                    <StatusBar barStyle="light-content" />
-                    <Carrousel
-                        data={this.state.images}
-                        onChangeView={idx => this.setState({id:idx})}
-                    />
-                    <Text style={styles.titleText}>
-                        Tipo: 
-                    </Text>
+function ResultView({ navigation, route }) {
+    const [id, setId] = useState(0);
+    const [showInfo, toogleInfo] = useState(false);
+
+    const { images, prediction } = route.params;
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight:
+                () => <Icon name="info" containerStyle={{ marginRight: 20 }} size={30} onPress={() => toogleInfo(true)} type="font-awesome" color={config.colors.green} />
+        });
+    })
+    return (
+        <View style={styles.mainContainer}  >
+            <SafeAreaView style={{ flex: 1 }} >
+                <StatusBar barStyle="light-content" />
+                <Carrousel
+                    data={images}
+                    onChangeView={idx => setId(idx)}
+                />
+                <Text style={styles.titleText}>
+                    Tipo:
+            </Text>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10 }}>
                     <Text style={styles.valueTitleText}>
-                        Galaxía {this.state.prediction[this.state.id].type }
+                        Galaxía {prediction[id].type}
                     </Text>
-                    <Text style={styles.titleText}>
-                        Información: 
-                    </Text>
-                    <ScrollView style={{flex:1}} contentContainerStyle={{marginBottom:10,marginHorizontal:'5%'}} showsVerticalScrollIndicator persistentScrollbar >
+                    <Icon name="info-circle" containerStyle={{ marginRight: 20 }} size={30} onPress={() => toogleInfo(true)} type="font-awesome" color={config.colors.green} />
+                </View>
+
+                <Text style={styles.titleText}>
+                    Información:
+            </Text>
+                <ScrollView style={{ flex: 1 }} contentContainerStyle={{ marginBottom: 10, marginHorizontal: '5%' }} showsVerticalScrollIndicator persistentScrollbar >
                     <Text style={styles.infoBodyText}>
-                    {this.state.prediction[this.state.id].information}
+                        {prediction[id].information}
                     </Text>
-                    </ScrollView>
-                    
-                    
-                </SafeAreaView>
+                </ScrollView>
 
-            </View>
+                <InformationModal showModal={showInfo} onCloseModal={() => toogleInfo(false)} />
+            </SafeAreaView>
 
-        );
-    }
+        </View>
+    );
 }
 
 const styles = {
@@ -86,7 +89,6 @@ const styles = {
         marginBottom: 10
     },
     valueTitleText: {
-        width: '100%',
         fontSize: SCREEN_HEIGHT * 0.035,
         color: config.colors.white,
         paddingHorizontal: '10%',

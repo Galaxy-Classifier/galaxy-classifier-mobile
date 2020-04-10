@@ -1,0 +1,87 @@
+{
+    "galaxies": [{
+        "title": "Elíptica",
+        "src": {
+            "webpS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-500_x_500.webp",
+            "webpXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-400_x_400.webp",
+            "webpM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-600_x_600.webp",
+            "webpL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-700_x_700.webp",
+            "pngS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-500_x_500.jpg",
+            "pngXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-400_x_400.jpg",
+            "pngM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-600_x_600.jpg",
+            "pngL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/elliptical/elliptical_original-700_x_700.jpg",
+            "alt": "Imágen de Galaxia Elíptica"
+        },
+        "info": [{
+            "id": 1,
+            "text": "Clasificada en 1936 por Edwin Hubble."
+        },{
+            "id": 2,
+            "text": "Generalmente su población estelar es vieja."
+        },{
+            "id": 3,
+            "text": "Se encuentran comúnmente en clústers de galaxias o en grupos compactos de galaxias."
+        },{
+            "id": 4,
+            "text": "Carecen de estructura sólida."
+        },{
+            "id": 5,
+            "text": "Su población estelar mantiene órbitas irregulares alrededor del centro."
+        }]
+    }, {
+        "title": "Lenticular",
+        "src": {
+            "webpS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-500_x_500.webp",
+            "webpXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-400_x_400.webp",
+            "webpM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-600_x_600.webp",
+            "webpL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-700_x_700.webp",
+            "pngS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-500_x_500.png",
+            "pngXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-400_x_400.png",
+            "pngM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-600_x_600.png",
+            "pngL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/lenticular/lenticular_original-700_x_700.png",
+            "alt": "Imágen de Galaxia Lenticular"
+        },
+        "info": [{
+            "id": 1,
+            "text": "Clasificada en 1936 por Edwin Hubble."
+        },{
+            "id": 2,
+            "text": "Se piensa que son galaxias en estado de transición."
+        },{
+            "id": 3,
+            "text": "Su sentido de rotación es muy variable."
+        },{
+            "id": 4,
+            "text": "Son más brillantes que las galaxias espirales."
+        },{
+            "id": 5,
+            "text": "Contienen demasiado polvo, lo que sugiere que son galaxias viejas."
+        }]
+    }, {
+        "title": "Espiral",
+        "src": {
+            "webpS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-500_x_500.webp",
+            "webpXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-400_x_400.webp",
+            "webpM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-600_x_600.webp",
+            "webpL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-700_x_700.webp",
+            "pngS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-500_x_500.png",
+            "pngXS": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-400_x_400.png",
+            "pngM": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-600_x_600.png",
+            "pngL": "https://galaxyclassifier.s3-us-west-1.amazonaws.com/galaxies/spiral/spiral_original-700_x_700.png",
+            "alt": "Imágen de Galaxia Espiral"
+        },
+        "info": [{
+            "id": 1,
+            "text": "Clasificada en 1936 por Edwin Hubble."
+        },{
+            "id": 2,
+            "text": "Consisten de un disco rotatorio plano que contiene estrellas, gas y polvo con brazos muy prominentes que conforman una espiral."
+        },{
+            "id": 3,
+            "text": "Son del tipo de galaxia más abundante que existe."
+        },{
+            "id": 4,
+            "text": "Se encuentran generalmente en áreas de poca densidad galáctica."
+        }]
+    }]
+}
