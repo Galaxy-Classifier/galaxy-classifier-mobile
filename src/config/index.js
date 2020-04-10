@@ -9,7 +9,8 @@ export default {
        tecnmLogo: require('../images/logoTecnm.png'),
        infoIcon: require('../images/info.png'),
        addImageIcon: require('../images/addImage.png'),
-       erorrIcon:  require('../images/error.png')
+       erorrIcon:  require('../images/error.png'),
+       user: require('../images/userImage.png')
     },
     uri: {
        prediction: "https://ddddgdgdgd",
