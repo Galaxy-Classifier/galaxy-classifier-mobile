@@ -17,7 +17,8 @@ import {
 } from 'react-native-elements';
 import {
     Carrousel,
-    InformationModal
+    InformationModal,
+    PeopleModal
 } from '../components';
 import config from '../config';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -27,12 +28,13 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 function ResultView({ navigation, route }) {
     const [id, setId] = useState(0);
     const [showInfo, toogleInfo] = useState(false);
+    const [showPeopleInfo, tooglePeopleInfo] = useState(false)
 
     const { images, prediction } = route.params;
     React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight:
-                () => <Icon name="info" containerStyle={{ marginRight: 20 }} size={30} onPress={() => toogleInfo(true)} type="font-awesome" color={config.colors.green} />
+                () => <Icon name="info" containerStyle={{ marginRight: 20 }} size={30} onPress={() => tooglePeopleInfo(true)} type="font-awesome" color={config.colors.green} />
         });
     })
     return (
@@ -63,6 +65,7 @@ function ResultView({ navigation, route }) {
                 </ScrollView>
 
                 <InformationModal showModal={showInfo} onCloseModal={() => toogleInfo(false)} />
+                <PeopleModal showModal={showPeopleInfo} onCloseModal={()=> tooglePeopleInfo(false)} />
             </SafeAreaView>
 
         </View>
