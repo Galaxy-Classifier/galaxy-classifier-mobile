@@ -4,7 +4,7 @@ import {
     View,
     ImageBackground,
     Dimensions,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import {
     Button,
@@ -28,7 +28,9 @@ const renderPhotos = (data,onSelectItem,selectedImages) => {
                                 <CheckBox 
                                     checkedIcon='check-circle'
                                     uncheckedIcon='circle'
-                                    checked = {isChecked} />
+                                    fontFamily="fontawesome"
+                                    checked = {isChecked}
+                                    onPress={()=> onSelectItem(item.node.image.uri)} />
                             </ImageBackground>
                         </TouchableOpacity>
                         

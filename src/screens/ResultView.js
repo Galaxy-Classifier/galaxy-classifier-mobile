@@ -34,7 +34,7 @@ function ResultView({ navigation, route }) {
     React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight:
-                () => <Icon name="info" containerStyle={{ marginRight: 20 }} size={30} onPress={() => tooglePeopleInfo(true)} type="font-awesome" color={config.colors.green} />
+                () => <Icon name="info" containerStyle={{ marginRight: 20 }} size={30} onPress={() => tooglePeopleInfo(true)} type="font-awesome" color={config.colors.green} underlayColor='transparent' />
         });
     })
     return (
@@ -52,7 +52,7 @@ function ResultView({ navigation, route }) {
                     <Text style={styles.valueTitleText}>
                         Galaxía {prediction[id].type}
                     </Text>
-                    <Icon name="info-circle" containerStyle={{ marginRight: 20 }} size={30} onPress={() => toogleInfo(true)} type="font-awesome" color={config.colors.green} />
+                    <Icon name="info-circle" containerStyle={{ marginRight: 20 }} size={30} onPress={() => toogleInfo(true)} type="font-awesome" color={config.colors.green}  underlayColor='transparent'/>
                 </View>
 
                 <Text style={styles.titleText}>

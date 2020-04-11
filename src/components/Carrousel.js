@@ -2,8 +2,10 @@ import React from 'react';
 import {
     View,
     Image,
-    Dimensions
+    Dimensions,
+    Text
 } from 'react-native';
+import ViewPagerAndroid from "@react-native-community/viewpager";
 import Swiper from 'react-native-swiper';
 import config from '../config';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -36,6 +38,7 @@ const Carrousel = ({ data, addImage,onChangeView }) => {
             <Swiper showsButtons={data.length >1 ?  true : false} activeDotColor={config.colors.green} dotColor={config.colors.white} onIndexChanged={ onChangeView ? idx =>  onChangeView(idx) : idx => console.log(idx) }  >
                 {renderCards(data,addImage)}
             </Swiper>
+            
         </View>
 
     );
@@ -57,7 +60,7 @@ const styles={
         width: '80%', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        margin: '15%', 
+        margin: SCREEN_HEIGHT * 0.1, 
         alignSelf: 'center', 
         borderRadius: 10 ,
         padding:'3%'
